@@ -22,13 +22,13 @@ def set_keyboard_controls(snake):
     game_screen.onkey(snake.right, "Right")
 
 
-def play_game(screen):
+def play_game(screen, player_name):
     # screen = Screen()
     setup_screen()
     snake = Snake()
     set_keyboard_controls(snake)
     food = Food()
-    scoreboard = ScoreBoard()
+    scoreboard = ScoreBoard(player_name)
     game_is_on = True
     while game_is_on:
         # can only be used if tracer is off(animation is off)
@@ -43,7 +43,7 @@ def play_game(screen):
             # TODO 5: create score board
             scoreboard.update_score()
         # TODO 6: detect collision with wall
-        if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
             game_is_on = False
             scoreboard.game_over()
         # TODO 7: detect collision with tail
@@ -55,11 +55,11 @@ def play_game(screen):
 
 game_screen = Screen()
 setup_screen()
-user_input = game_screen.textinput(GAME_TITLE, "Enter any key to start the game :)")
+player_name = game_screen.textinput(GAME_TITLE, "Enter the player's first name: ").split(" ")[0]
 
 restart_game = True
 while restart_game:
-    play_game(game_screen)
+    play_game(game_screen, player_name)
     user_input = game_screen.textinput("Wanna play again ??", "Do you want to restart the game ? Type 'y' or 'n : ")
     if user_input == 'y':
         game_screen.clearscreen()
