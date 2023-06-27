@@ -41,16 +41,20 @@ def play_game(screen, player_name):
             food.refresh()
             snake.extend()
             # TODO 5: create score board
-            scoreboard.update_score()
+            scoreboard.increase_score()
         # TODO 6: detect collision with wall
         if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
-            game_is_on = False
-            scoreboard.game_over()
+            # game_is_on = False
+            # scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
         # TODO 7: detect collision with tail
         for segment in snake.segments[1:]:
             if snake.head.distance(segment) < 10:
-                game_is_on = False
-                scoreboard.game_over()
+                # game_is_on = False
+                # scoreboard.game_over()
+                scoreboard.reset()
+                snake.reset()
 
 
 game_screen = Screen()
